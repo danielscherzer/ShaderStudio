@@ -22,7 +22,7 @@ build:
   verbosity: minimal              # MSBuild verbosity level
 
 artifacts:
-- path: bin\$(configuration)\ShaderStudio
+- path: src\bin\$(configuration)
   name: ShaderStudio
 
 deploy:

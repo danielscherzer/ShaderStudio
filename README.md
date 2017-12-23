@@ -1,6 +1,6 @@
 # ShaderStudio
 
-[![Build status](https://ci.appveyor.com/api/projects/status/reevo7tsncwty1cs?svg=true)](https://ci.appveyor.com/project/danielscherzer/ShaderStudio)
+[![Build status](https://ci.appveyor.com/api/projects/status/rosjurrxd64mfmd5/branch/master?svg=true)](https://ci.appveyor.com/project/danielscherzer/ShaderStudio)
 
 Visual Studio like application for developing fragment shaders.
 
