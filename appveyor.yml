@@ -13,7 +13,6 @@ assembly_info:
 image: Visual Studio 2017
 
 configuration:
-#- Debug
 - Release
 
 before_build:
@@ -23,7 +22,7 @@ build:
   verbosity: minimal              # MSBuild verbosity level
 
 artifacts:
-- path: src\bin\$(configuration)\ShaderStudio
+- path: bin\$(configuration)\ShaderStudio
   name: ShaderStudio
 
 deploy:
