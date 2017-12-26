@@ -1,24 +1,10 @@
 ﻿<UserControl x:Class="ShaderStudio.ShaderDocumentView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-			 xmlns:WpfGL="clr-namespace:WpfGlslControl;assembly=WpfGlslControl"
-             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:codeeditor="clr-namespace:Gemini.Modules.CodeEditor.Controls;assembly=Gemini.Modules.CodeEditor"
 			 xmlns:cal="http://www.caliburnproject.org">
 	<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="*"/>
-			<RowDefinition Height="*"/>
-		</Grid.RowDefinitions>
-		<TextBox Grid.Row="0" x:Name="ShaderSourceCode"/>
-		<WpfGL:WpfShaderControl x:Name="glslControl" Grid.Row="1"
-			ShaderSourceCode="{Binding ShaderSourceCode}">
-			<i:Interaction.Triggers>
-				<i:EventTrigger EventName="TargetUpdated">
-					<cal:ActionMessage MethodName="UpdateLog">
-						<cal:Parameter Value="{Binding ElementName=glslControl, Path=ShaderLog, NotifyOnTargetUpdated=True}" />
-					</cal:ActionMessage>
-				</i:EventTrigger>
-			</i:Interaction.Triggers>
-		</WpfGL:WpfShaderControl>
+		<TextBox x:Name="ShaderSourceCode"/>
+		<!--<codeeditor:CodeEditor SyntaxHighlighting="C#"/>-->
 	</Grid>
 </UserControl>

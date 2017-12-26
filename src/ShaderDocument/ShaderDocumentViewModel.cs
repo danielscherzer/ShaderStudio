@@ -1,13 +1,10 @@
 ﻿using Gemini.Framework;
-using Gemini.Framework.Services;
 using Gemini.Framework.Threading;
-using Gemini.Modules.ErrorList;
 using System;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
-using Zenseless.HLGL;
 
 namespace ShaderStudio
 {
@@ -26,18 +23,16 @@ namespace ShaderStudio
 		}
 
 		[ImportingConstructor]
-		public ShaderDocumentViewModel(IErrorList errorList, IShell shell)
+		public ShaderDocumentViewModel()
 		{
 			DisplayName = "Default Shader";
-			this.errorList = errorList;
-			this.shell = shell;
 		}
 
-		public override void CanClose(Action<bool> callback)
-		{
-			//if(!ReferenceEquals(null, shader)) shader.Dispose();
-			callback(true);
-		}
+		//public override void CanClose(Action<bool> callback)
+		//{
+		//	//if(!ReferenceEquals(null, shader)) shader.Dispose();
+		//	callback(true);
+		//}
 
 		//public override bool Equals(object obj)
 		//{
@@ -77,44 +72,11 @@ namespace ShaderStudio
 				File.ReadAllText(filePath);
 		}
 
-		//private void LogShaderException(ShaderException e)
-		//{
-		//	if (string.IsNullOrEmpty(e.ShaderLog))
-		//	{
-		//		errorList.AddItem(ErrorListItemType.Error, e.Message);
-		//		shell.ShowTool(errorList);
-		//	}
-		//	else
-		//	{
-		//		UpdateLog(e.ShaderLog);
-		//	}
-		//}
-
-		public void UpdateLog(string shaderLog)
-		{
-			errorList.Items.Clear();
-			var log = new ShaderLog(shaderLog);
-			foreach (var line in log.Lines)
-			{
-				//line.Type
-				errorList.AddItem(ErrorListItemType.Error, line.Message, FilePath, line.LineNumber, null,
-					() =>
-					{
-						//var openDocumentResult = new OpenDocumentResult(FilePath);
-						//IoC.BuildUp(openDocumentResult);
-						//openDocumentResult.Execute(null);
-					});
-			}
-			shell.ShowTool(errorList);
-		}
-
 		protected override Task DoSave(string filePath)
 		{
 			return TaskUtility.Completed;
 		}
 
-		private IErrorList errorList;
-		private IShell shell;
 		private FileSystemWatcher fileWatcher;
 		private string _source;
 	}

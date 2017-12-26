@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="ShaderStudio.ShaderViewPanelTool.ShaderViewPanelView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+			 xmlns:WpfGL="clr-namespace:WpfGlslControl;assembly=WpfGlslControl"
+			 xmlns:cal="http://www.caliburnproject.org">
+	<WpfGL:WpfShaderControl x:Name="glslControl"
+			ShaderSourceCode="{Binding SelectedShader}">
+		<i:Interaction.Triggers>
+			<i:EventTrigger EventName="TargetUpdated">
+				<cal:ActionMessage MethodName="UpdateLog">
+					<cal:Parameter Value="{Binding ElementName=glslControl, Path=ShaderLog, NotifyOnTargetUpdated=True}" />
+				</cal:ActionMessage>
+			</i:EventTrigger>
+		</i:Interaction.Triggers>
+	</WpfGL:WpfShaderControl>
+</UserControl>

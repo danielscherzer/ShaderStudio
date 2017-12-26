@@ -30,6 +30,6 @@ namespace ShaderStudio
 			await ((ShaderDocumentViewModel)document).Load(path);
 		}
 
-		private const string extension = ".glsl"; 
+		private const string extension = ".glsl";
 	}
 }

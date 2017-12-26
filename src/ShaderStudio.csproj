@@ -42,6 +42,9 @@
     <PackageReference Include="Caliburn.Micro.Core">
       <Version>2.0.2</Version>
     </PackageReference>
+    <PackageReference Include="Gemini.Modules.CodeEditor">
+      <Version>0.6.2</Version>
+    </PackageReference>
     <PackageReference Include="Gemini.Modules.ErrorList">
       <Version>0.6.2</Version>
     </PackageReference>
@@ -64,10 +67,10 @@
       <Version>3.0.0-pre</Version>
     </PackageReference>
     <PackageReference Include="WpfGlslControl">
-      <Version>0.1.7</Version>
+      <Version>0.1.8</Version>
     </PackageReference>
     <PackageReference Include="WpfOpenGlControl">
-      <Version>0.2.45</Version>
+      <Version>0.2.46</Version>
     </PackageReference>
     <PackageReference Include="Zenseless">
       <Version>0.3.131</Version>
@@ -90,12 +93,20 @@
     <Compile Include="ShaderDocument\ShaderDocumentViewModel.cs" />
     <Compile Include="Modules\Module.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShaderViewPanelTool\MenuDefinitions.cs" />
+    <Compile Include="ShaderViewPanelTool\ShaderViewPanelCommandDefinition.cs" />
+    <Compile Include="ShaderViewPanelTool\ShaderViewPanelCommandHandler.cs" />
+    <Compile Include="ShaderViewPanelTool\ShaderViewPanelViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="ShaderDocument\ShaderDocumentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ShaderViewPanelTool\ShaderViewPanelView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
