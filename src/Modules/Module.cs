@@ -49,7 +49,7 @@ namespace ShaderStudio.Modules
 		{
 			var shaderDoc = Shell.ActiveItem as ShaderDocumentViewModel;
 			if (shaderDoc is null) return;
-			var shaderPanel = IoC.Get<ShaderViewPanelViewModel>();
+			var shaderPanel = IoC.Get<IShaderViewPanelViewModel>();
 			BindProperties(shaderDoc, nameof(shaderDoc.ShaderSourceCode)
 				, shaderPanel, nameof(shaderPanel.SelectedShader));
 		}

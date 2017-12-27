@@ -7,7 +7,7 @@ using Zenseless.HLGL;
 
 namespace ShaderStudio.ShaderViewPanelTool
 {
-	[Export]
+	[Export(typeof(IShaderViewPanelViewModel))]
 	public class ShaderViewPanelViewModel : Tool, IShaderViewPanelViewModel
 	{
 		public override PaneLocation PreferredLocation => PaneLocation.Right;

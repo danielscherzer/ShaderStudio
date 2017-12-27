@@ -17,7 +17,7 @@ namespace ShaderStudio.ShaderViewPanelTool
 
 		public override Task Run(Command command)
 		{
-			_shell.ShowTool<ShaderViewPanelViewModel>(); //TODO: interface
+			_shell.ShowTool<IShaderViewPanelViewModel>();
 			return TaskUtility.Completed;
 		}
 
