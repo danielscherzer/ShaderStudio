@@ -1,6 +1,6 @@
 ﻿using Gemini.Framework;
 using Gemini.Framework.Threading;
-using System;
+using ICSharpCode.AvalonEdit.Document;
 using System.ComponentModel.Composition;
 using System.IO;
 using System.Threading;
@@ -14,10 +14,20 @@ namespace ShaderStudio
 	{
 		public string ShaderSourceCode
 		{
-			get => _source;
+			get => Document.Text;
 			set
 			{
-				_source = value;
+				Document.Text = value;
+			}
+		}
+
+		public TextDocument Document
+		{
+			get => _document;
+			set
+			{
+				_document = value;
+				NotifyOfPropertyChange(nameof(Document));
 				NotifyOfPropertyChange(nameof(ShaderSourceCode));
 			}
 		}
@@ -26,6 +36,11 @@ namespace ShaderStudio
 		public ShaderDocumentViewModel()
 		{
 			DisplayName = "Default Shader";
+			_document.Changed += (s, e) =>
+			{
+				NotifyOfPropertyChange(nameof(Document));
+				NotifyOfPropertyChange(nameof(ShaderSourceCode));
+			};
 		}
 
 		//public override void CanClose(Action<bool> callback)
@@ -78,6 +93,6 @@ namespace ShaderStudio
 		}
 
 		private FileSystemWatcher fileWatcher;
-		private string _source;
+		private TextDocument _document = new TextDocument("void main() { gl_FragColor = vec4(1.0); }");
 	}
 }

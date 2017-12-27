@@ -4,7 +4,8 @@
              xmlns:codeeditor="clr-namespace:Gemini.Modules.CodeEditor.Controls;assembly=Gemini.Modules.CodeEditor"
 			 xmlns:cal="http://www.caliburnproject.org">
 	<Grid>
-		<TextBox x:Name="ShaderSourceCode"/>
-		<!--<codeeditor:CodeEditor SyntaxHighlighting="C#"/>-->
+		<!--<TextBox x:Name="ShaderSourceCode"/>-->
+		<codeeditor:CodeEditor Document="{Binding Document}" SyntaxHighlighting="C#"
+							   FontSize="16"/>
 	</Grid>
 </UserControl>
