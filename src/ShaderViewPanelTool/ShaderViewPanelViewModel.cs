@@ -2,12 +2,13 @@
 using Gemini.Framework.Services;
 using Gemini.Modules.ErrorList;
 using System.ComponentModel.Composition;
+using System.Linq;
 using Zenseless.HLGL;
 
 namespace ShaderStudio.ShaderViewPanelTool
 {
 	[Export]
-	public class ShaderViewPanelViewModel : Tool
+	public class ShaderViewPanelViewModel : Tool, IShaderViewPanelViewModel
 	{
 		public override PaneLocation PreferredLocation => PaneLocation.Right;
 
@@ -35,8 +36,8 @@ namespace ShaderStudio.ShaderViewPanelTool
 			var log = new ShaderLog(shaderLog);
 			foreach (var line in log.Lines)
 			{
-				//line.Type
-				errorList.AddItem(ErrorListItemType.Error, line.Message, "", line.LineNumber, null,
+				var type = ShaderLogLine.WellKnownTypeError == line.Type ? ErrorListItemType.Error : ErrorListItemType.Warning;
+				errorList.AddItem(type, line.Message, "", line.LineNumber, null,
 					() =>//TODO: filePath
 					{
 						//var openDocumentResult = new OpenDocumentResult(FilePath);
@@ -44,7 +45,14 @@ namespace ShaderStudio.ShaderViewPanelTool
 						//openDocumentResult.Execute(null);
 					});
 			}
-			shell.ShowTool(errorList);
+			if (log.Lines.Count() > 0)
+			{
+				shell.ShowTool(errorList);
+			}
+			else
+			{
+				errorList.IsVisible = false;
+			}
 		}
 
 		private string _selectedShader = string.Empty;

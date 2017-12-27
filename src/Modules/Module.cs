@@ -15,6 +15,7 @@ namespace ShaderStudio.Modules
 			base.PreInitialize();
 			MainWindow.Title = "ShaderStudio";
 			MainWindow.Icon = null;
+			Shell.ToolBars.Visible = true;
 			Shell.ActiveDocumentChanged += Shell_ActiveDocumentChanged;
 		}
 
