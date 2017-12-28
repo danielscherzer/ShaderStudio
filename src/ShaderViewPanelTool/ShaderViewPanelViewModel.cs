@@ -31,7 +31,7 @@ namespace ShaderStudio.ShaderViewPanelTool
 		}
 
 		public void UpdateLog(string shaderLog)
-		{
+		{//TODO: no error logs when closed -> no closing or split
 			errorList.Items.Clear();
 			var log = new ShaderLog(shaderLog);
 			foreach (var line in log.Lines)

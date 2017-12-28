@@ -5,6 +5,7 @@ using System.ComponentModel.Composition;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ShaderStudio
 {
@@ -38,26 +39,36 @@ namespace ShaderStudio
 			DisplayName = "Default Shader";
 			_document.Changed += (s, e) =>
 			{
+				IsDirty = string.Compare(_originalText, ShaderSourceCode) != 0;
 				NotifyOfPropertyChange(nameof(Document));
 				NotifyOfPropertyChange(nameof(ShaderSourceCode));
 			};
 		}
 
-		//public override void CanClose(Action<bool> callback)
-		//{
-		//	//if(!ReferenceEquals(null, shader)) shader.Dispose();
-		//	callback(true);
-		//}
-
 		//public override bool Equals(object obj)
 		//{
-		//	var other = obj as ShaderViewModel;
-		//	if (ReferenceEquals(null, other)) return false;
-		//	return string.Equals(FilePath, other.FilePath, StringComparison.InvariantCultureIgnoreCase);
+		//	var other = obj as ShaderDocumentViewModel;
+		//	if (other is null) return false;
+		//	return string.Equals(FilePath, other.FilePath, StringComparison.InvariantCultureIgnoreCase)
+		//		&& string.Equals(FileName, other.FileName, StringComparison.InvariantCultureIgnoreCase);
 		//}
+
+		public override bool ShouldReopenOnStart => true;
+
+		public override void SaveState(BinaryWriter writer)
+		{
+			writer.Write(FilePath);
+		}
+
+		public override void LoadState(BinaryReader reader)
+		{
+			Load(reader.ReadString());
+		}
 
 		protected override Task DoNew()
 		{
+			_originalText = "void main() { gl_FragColor = vec4(1.0); }";
+			ShaderSourceCode = _originalText;
 			return TaskUtility.Completed;
 		}
 
@@ -75,24 +86,39 @@ namespace ShaderStudio
 			return TaskUtility.Completed;
 		}
 
+		protected override Task DoSave(string filePath)
+		{
+			File.WriteAllText(filePath, ShaderSourceCode);
+			_originalText = ShaderSourceCode;
+			return TaskUtility.Completed;
+		}
+
 		private void FileNotification(object sender, FileSystemEventArgs e)
 		{
 			Thread.Sleep(1000);
-			LoadShaderFromFile(FilePath);
+			var dispatcher = Application.Current.Dispatcher;
+			if (!dispatcher.CheckAccess())
+			{
+				dispatcher.Invoke(() =>
+				{
+					LoadShaderFromFile(FilePath);
+				});
+			}
+			else
+			{
+				LoadShaderFromFile(FilePath);
+			}
 		}
 
 		private void LoadShaderFromFile(string filePath)
 		{
-			ShaderSourceCode = //ShaderLoader.ShaderStringFromFileWithIncludes(filePath, true);
+			_originalText = //ShaderLoader.ShaderStringFromFileWithIncludes(filePath, true);
 				File.ReadAllText(filePath);
+			ShaderSourceCode = _originalText;
 		}
 
-		protected override Task DoSave(string filePath)
-		{
-			return TaskUtility.Completed;
-		}
-
+		private string _originalText;
 		private FileSystemWatcher fileWatcher;
-		private TextDocument _document = new TextDocument("void main() { gl_FragColor = vec4(1.0); }");
+		private TextDocument _document = new TextDocument();
 	}
 }

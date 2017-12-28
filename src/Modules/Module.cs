@@ -21,9 +21,9 @@ namespace ShaderStudio.Modules
 
 		public override void PostInitialize()
 		{
-			var shaderDoc = IoC.Get<ShaderDocumentViewModel>();
-			shaderDoc.Load(@"D:\Daten\FH Ravensburg\Framework\ACG\Examples\2D\HelloWorld.glsl");
-			Shell.OpenDocument(shaderDoc);
+			//var shaderDoc = IoC.Get<ShaderDocumentViewModel>();
+			//shaderDoc.Load(@"D:\Daten\FH Ravensburg\Framework\ACG\Examples\2D\HelloWorld.glsl");
+			//Shell.OpenDocument(shaderDoc);
 
 			//var graph = IoC.Get<GraphViewModel>();
 			//var element1 = graph.AddElement<ImageSource>(10, 10);

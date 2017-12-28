@@ -10,17 +10,26 @@ namespace ShaderStudio.ShaderViewPanelTool
 	public class ShaderViewPanelCommandHandler : CommandHandlerBase<ShaderViewPanelCommandDefinition>
 	{
 		[ImportingConstructor]
-		public ShaderViewPanelCommandHandler(IShell shell)
+		public ShaderViewPanelCommandHandler(IShell shell, IShaderViewPanelViewModel shaderPanel)
 		{
 			_shell = shell;
+			_shaderPanel = shaderPanel;
 		}
 
 		public override Task Run(Command command)
 		{
-			_shell.ShowTool<IShaderViewPanelViewModel>();
+			if (!_shaderPanel.IsVisible)
+			{
+				_shell.ShowTool<IShaderViewPanelViewModel>();
+			}
+			else
+			{
+				_shaderPanel.IsVisible = false;
+			}
 			return TaskUtility.Completed;
 		}
 
 		private readonly IShell _shell;
+		private readonly IShaderViewPanelViewModel _shaderPanel;
 	}
 }
