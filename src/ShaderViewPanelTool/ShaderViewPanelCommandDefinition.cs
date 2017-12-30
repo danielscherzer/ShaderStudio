@@ -14,9 +14,10 @@ namespace ShaderStudio.ShaderViewPanelTool
 
 		public override string ToolTip => Text;
 
-		public override Uri IconSource => new Uri("/Resources/DynamicImage.png", UriKind.Relative);
+		public override Uri IconSource => new Uri("/Resources/ShaderViewPanel.png", UriKind.Relative);
 
 		[Export]
-		public static CommandKeyboardShortcut KeyGesture = new CommandKeyboardShortcut<ShaderViewPanelCommandDefinition>(new KeyGesture(Key.V, ModifierKeys.Control));
+		public static CommandKeyboardShortcut KeyGesture = new CommandKeyboardShortcut<ShaderViewPanelCommandDefinition>(
+			new KeyGesture(Key.V, ModifierKeys.Control | ModifierKeys.Shift));
 	}
 }

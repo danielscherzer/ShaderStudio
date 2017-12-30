@@ -66,12 +66,6 @@
     <PackageReference Include="OpenTK.GLControl">
       <Version>3.0.0-pre</Version>
     </PackageReference>
-    <PackageReference Include="WpfGlslControl">
-      <Version>0.1.9</Version>
-    </PackageReference>
-    <PackageReference Include="WpfOpenGlControl">
-      <Version>0.2.46</Version>
-    </PackageReference>
     <PackageReference Include="Zenseless">
       <Version>0.3.131</Version>
     </PackageReference>
@@ -114,7 +108,17 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\DynamicImage.png" />
+    <Resource Include="Resources\ShaderViewPanel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\WpfGlslControl\src\WpfGlslControl.csproj">
+      <Project>{50ED089B-AB09-4BF9-87BD-2934B76E5057}</Project>
+      <Name>WpfGlslControl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WpfOpenGlControl\src\WpfOpenGlControl.csproj">
+      <Project>{48B5D6A6-3F23-4668-A585-A9E33900C99D}</Project>
+      <Name>WpfOpenGlControl</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
