@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace ShaderStudio
 {
 	[Export(typeof(IEditorProvider))]
-	class ShaderViewerProvider : IEditorProvider
+	class ShaderDocumentProvider : IEditorProvider
 	{
 		public IEnumerable<EditorFileType> FileTypes
 		{

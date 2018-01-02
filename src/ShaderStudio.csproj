@@ -76,6 +76,7 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Xaml" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -83,8 +84,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ShaderDocument\LanguageDefinitionGlsl.cs" />
     <Compile Include="ShaderDocument\PersistedDocumentEx.cs" />
-    <Compile Include="ShaderDocument\ShaderViewerProvider.cs" />
+    <Compile Include="ShaderDocument\ShaderDocumentProvider.cs" />
     <Compile Include="ShaderDocument\ShaderDocumentViewModel.cs" />
     <Compile Include="Modules\Module.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -123,6 +125,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\ShaderIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\glsl.xshd">
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
