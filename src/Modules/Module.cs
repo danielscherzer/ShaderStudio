@@ -4,6 +4,7 @@ using ShaderStudio.ShaderViewPanelTool;
 using System;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
+using System.Windows.Media.Imaging;
 
 namespace ShaderStudio.Modules
 {
@@ -14,7 +15,7 @@ namespace ShaderStudio.Modules
 		{
 			base.PreInitialize();
 			MainWindow.Title = "ShaderStudio";
-			MainWindow.Icon = null;
+			MainWindow.Icon = new BitmapImage(new Uri("pack://application:,,,/Resources/ShaderIcon.png"));
 			Shell.ToolBars.Visible = true;
 			Shell.ActiveDocumentChanged += Shell_ActiveDocumentChanged;
 		}
@@ -28,7 +29,7 @@ namespace ShaderStudio.Modules
 			var shaderDoc = Shell.ActiveItem as ShaderDocumentViewModel;
 			if (shaderDoc is null) return;
 			var shaderPanel = IoC.Get<IShaderViewPanelViewModel>();
-			BindProperties(shaderDoc, nameof(shaderDoc.ShaderSourceCode)
+			BindProperties(shaderDoc, nameof(shaderDoc.Text)
 				, shaderPanel, nameof(shaderPanel.SelectedShader));
 		}
 

@@ -37,12 +37,10 @@ namespace ShaderStudio.ShaderViewPanelTool
 			foreach (var line in log.Lines)
 			{
 				var type = ShaderLogLine.WellKnownTypeError == line.Type ? ErrorListItemType.Error : ErrorListItemType.Warning;
-				errorList.AddItem(type, line.Message, "", line.LineNumber, null,
-					() =>//TODO: filePath
+				errorList.AddItem(type, line.Message, "current document", line.LineNumber, null,
+					() =>
 					{
-						//var openDocumentResult = new OpenDocumentResult(FilePath);
-						//IoC.BuildUp(openDocumentResult);
-						//openDocumentResult.Execute(null);
+						//TODO: select error line
 					});
 			}
 			if (log.Lines.Count() > 0)

@@ -18,14 +18,7 @@ namespace ShaderStudio.ShaderViewPanelTool
 
 		public override Task Run(Command command)
 		{
-			if (!_shaderPanel.IsVisible)
-			{
-				_shell.ShowTool<IShaderViewPanelViewModel>();
-			}
-			else
-			{
-				_shaderPanel.IsVisible = false;
-			}
+			_shell.ShowTool<IShaderViewPanelViewModel>();
 			return TaskUtility.Completed;
 		}
 
