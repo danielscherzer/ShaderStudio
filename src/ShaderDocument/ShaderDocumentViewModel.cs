@@ -1,9 +1,8 @@
 ﻿using Gemini.Framework.Threading;
-using ShaderStudio.ShaderDocument;
 using System.ComponentModel.Composition;
 using System.Threading.Tasks;
 
-namespace ShaderStudio
+namespace ShaderStudio.ShaderDocument
 {
 	[Export]
 	[PartCreationPolicy(CreationPolicy.NonShared)]

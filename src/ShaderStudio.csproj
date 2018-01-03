@@ -36,19 +36,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="AvalonEdit">
+      <Version>5.0.4</Version>
+    </PackageReference>
     <PackageReference Include="Caliburn.Micro">
       <Version>2.0.2</Version>
     </PackageReference>
     <PackageReference Include="Caliburn.Micro.Core">
       <Version>2.0.2</Version>
     </PackageReference>
-    <PackageReference Include="Gemini.Modules.CodeEditor">
-      <Version>0.6.2</Version>
-    </PackageReference>
     <PackageReference Include="Gemini.Modules.ErrorList">
-      <Version>0.6.2</Version>
-    </PackageReference>
-    <PackageReference Include="Gemini.Modules.GraphEditor">
       <Version>0.6.2</Version>
     </PackageReference>
     <PackageReference Include="Gemini.Modules.Inspector">
@@ -85,10 +82,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ShaderDocument\GlslFileExtensions.cs" />
-    <Compile Include="ShaderDocument\GlslThemeHandler.cs" />
+    <Compile Include="ShaderDocument\GlslHighlightingHandler.cs" />
     <Compile Include="ShaderDocument\HighlightingLoaderEx.cs" />
     <Compile Include="ShaderDocument\PersistedDocumentEx.cs" />
     <Compile Include="ShaderDocument\ShaderDocumentProvider.cs" />
+    <Compile Include="ShaderDocument\ShaderDocumentView.xaml.cs">
+      <DependentUpon>ShaderDocumentView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ShaderDocument\ShaderDocumentViewModel.cs" />
     <Compile Include="Modules\Module.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

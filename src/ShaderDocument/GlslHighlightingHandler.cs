@@ -6,10 +6,10 @@ using System.Linq;
 namespace ShaderStudio.ShaderDocument
 {
 	[Export]
-	public class GlslThemeHandler
+	public class GlslHighlightingHandler
 	{
 		[ImportingConstructor]
-		public GlslThemeHandler(IThemeManager themeManager)
+		public GlslHighlightingHandler(IThemeManager themeManager)
 		{
 			highlightingDefault = HighlightingLoaderEx.FromResource("Resources/glsl.xshd");
 			highlightingDark = HighlightingLoaderEx.FromResource("Resources/glsl_dark.xshd");
@@ -25,15 +25,15 @@ namespace ShaderStudio.ShaderDocument
 
 		private void SelectStyle()
 		{
-			IHighlightingDefinition SelectHighlightingDef()
+			var def = highlightingDefault;
+			if (!(_themeManager.CurrentTheme is null))
 			{
-				if (_themeManager.CurrentTheme is null) return highlightingDefault;
-				if (_themeManager.CurrentTheme.Name.ToLowerInvariant().Contains("dark")) return highlightingDark;
-				return highlightingDefault;
+				var themeName = _themeManager.CurrentTheme.Name;
+				if (themeName.ToLowerInvariant().Contains("dark")) def = highlightingDark;
 			}
-			var def = SelectHighlightingDef();
 			var hlManager = HighlightingManager.Instance;
-			hlManager.RegisterHighlighting(def.Name, GlslFileExtensions.FileExtensions.ToArray(), def);
+			var exts = GlslFileExtensions.List.ToArray();
+			hlManager.RegisterHighlighting(def.Name, exts, def);
 			//TODO: set new style for all docs
 		}
 	}

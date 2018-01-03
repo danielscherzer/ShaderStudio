@@ -14,9 +14,10 @@ namespace ShaderStudio.ShaderDocument
 	public class ShaderDocumentProvider : IEditorProvider
 	{
 		[ImportingConstructor]
-		public ShaderDocumentProvider(GlslThemeHandler themeHandler) //make sure the GLSL theme handler is instantiated
+		public ShaderDocumentProvider(GlslHighlightingHandler themeHandler) //make sure the GLSL theme handler is instantiated
 		{
-			FileTypes = from ext in GlslFileExtensions.FileExtensions select new EditorFileType("Shader", ext);
+			FileTypes = from ext in GlslFileExtensions.List
+						select new EditorFileType("Shader", ext);
 		}
 
 		public IEnumerable<EditorFileType> FileTypes { get; private set; }
@@ -25,14 +26,8 @@ namespace ShaderStudio.ShaderDocument
 
 		public bool Handles(string path) => GlslFileExtensions.Contains(Path.GetExtension(path));
 
-		public async Task New(IDocument document, string name)
-		{
-			await((ShaderDocumentViewModel)document).New(name);
-		}
+		public async Task New(IDocument document, string name) => await ((ShaderDocumentViewModel)document).New(name);
 
-		public async Task Open(IDocument document, string path)
-		{
-			await ((ShaderDocumentViewModel)document).Load(path);
-		}
+		public async Task Open(IDocument document, string path) => await ((ShaderDocumentViewModel)document).Load(path);
 	}
 }

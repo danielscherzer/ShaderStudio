@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using Gemini.Framework;
+using ShaderStudio.ShaderDocument;
 using ShaderStudio.ShaderViewPanelTool;
 using System;
 using System.ComponentModel;
