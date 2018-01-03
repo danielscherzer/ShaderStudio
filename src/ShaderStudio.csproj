@@ -84,7 +84,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ShaderDocument\LanguageDefinitionGlsl.cs" />
+    <Compile Include="ShaderDocument\GlslFileExtensions.cs" />
+    <Compile Include="ShaderDocument\GlslThemeHandler.cs" />
+    <Compile Include="ShaderDocument\HighlightingLoaderEx.cs" />
     <Compile Include="ShaderDocument\PersistedDocumentEx.cs" />
     <Compile Include="ShaderDocument\ShaderDocumentProvider.cs" />
     <Compile Include="ShaderDocument\ShaderDocumentViewModel.cs" />
@@ -127,7 +129,11 @@
     <Resource Include="Resources\ShaderIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\glsl.xshd">
+    <Resource Include="Resources\glsl.xshd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\glsl_dark.xshd">
+      <SubType>Designer</SubType>
     </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

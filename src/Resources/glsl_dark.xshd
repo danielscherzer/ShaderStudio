@@ -5,16 +5,16 @@
 	<Color name="Comment" foreground="Green" fontStyle="italic"/>
 	<Color name="Character" foreground="Fuchsia" />
 	<Color name="String" foreground="Yellow" />
-	<Color name="Preprocessor" foreground="Silver" />
-	<Color name="Punctuation" foreground="DarkGreen" />
-	<Color name="MethodName" foreground="MidnightBlue" fontWeight="bold" />
-	<Color name="Digits" foreground="DarkBlue" />
-	<Color name="Modifiers" foreground="#FF1EC0D6" fontWeight="bold" />
-	<Color name="TypeKeywords" foreground="#FF1293A5" fontWeight="bold" />
+	<Color name="Preprocessor" foreground="#B6B0B0" />
+	<Color name="Punctuation" foreground="White" />
+	<Color name="MethodName" foreground="White" fontWeight="bold" />
+	<Color name="Digits" foreground="Silver" />
+	<Color name="Modifiers" foreground="#FF1293A5" fontWeight="bold" />
+	<Color name="TypeKeywords" foreground="#FF1EC0D6" fontWeight="bold" />
 	<Color name="BuiltInVariables" foreground="#FF0DCB46" fontWeight="bold"/>
 	<Color name="BuiltInFunctions" foreground="Orange" fontWeight="bold"/>
-	<Color name="BooleanConstants" foreground="#FF000000" fontWeight="bold" />
-	<Color name="ControlFlow" foreground="#FF0000FF" fontWeight="bold" />
+	<Color name="BooleanConstants" foreground="White" fontWeight="bold" />
+	<Color name="ControlFlow" foreground="#FF1293A5" fontWeight="bold" />
 	<Color name="Reserved" foreground="Red" />
 	<RuleSet ignoreCase="false">
 		<Rule color="Punctuation">

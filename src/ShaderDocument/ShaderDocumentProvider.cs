@@ -4,21 +4,26 @@ using Gemini.Framework.Services;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
-namespace ShaderStudio
+namespace ShaderStudio.ShaderDocument
 {
 	[Export(typeof(IEditorProvider))]
-	class ShaderDocumentProvider : IEditorProvider
+	[PartCreationPolicy(CreationPolicy.Shared)]
+	public class ShaderDocumentProvider : IEditorProvider
 	{
-		public IEnumerable<EditorFileType> FileTypes
+		[ImportingConstructor]
+		public ShaderDocumentProvider(GlslThemeHandler themeHandler) //make sure the GLSL theme handler is instantiated
 		{
-			get { yield return new EditorFileType("Fragment Shader", extension); }
+			FileTypes = from ext in GlslFileExtensions.FileExtensions select new EditorFileType("Shader", ext);
 		}
+
+		public IEnumerable<EditorFileType> FileTypes { get; private set; }
 
 		public IDocument Create() => IoC.Get<ShaderDocumentViewModel>();
 
-		public bool Handles(string path) => extension == Path.GetExtension(path);
+		public bool Handles(string path) => GlslFileExtensions.Contains(Path.GetExtension(path));
 
 		public async Task New(IDocument document, string name)
 		{
@@ -29,7 +34,5 @@ namespace ShaderStudio
 		{
 			await ((ShaderDocumentViewModel)document).Load(path);
 		}
-
-		private const string extension = ".glsl";
 	}
 }
