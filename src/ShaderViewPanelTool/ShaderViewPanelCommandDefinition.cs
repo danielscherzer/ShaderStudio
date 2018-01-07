@@ -17,7 +17,8 @@ namespace ShaderStudio.ShaderViewPanelTool
 		public override Uri IconSource => new Uri("/Resources/ShaderViewPanel.png", UriKind.Relative);
 
 		[Export]
-		public static CommandKeyboardShortcut KeyGesture = new CommandKeyboardShortcut<ShaderViewPanelCommandDefinition>(
+		public static CommandKeyboardShortcut KeyGesture = 
+			new CommandKeyboardShortcut<ShaderViewPanelCommandDefinition>(
 			new KeyGesture(Key.V, ModifierKeys.Control | ModifierKeys.Shift));
 	}
 }

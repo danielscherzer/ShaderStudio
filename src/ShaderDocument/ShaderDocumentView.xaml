@@ -12,7 +12,14 @@
 			<Setter Property="Foreground" Value="{DynamicResource MenuPopupDefaultText}" />
 		</Style>
 	</UserControl.Resources>
+	<UserControl.CommandBindings>
+		<CommandBinding Command="ApplicationCommands.Undo" Executed="UndoCommand_Executed" CanExecute="UndoCommand_CanExecute" />
+	</UserControl.CommandBindings>
 	<Grid>
+		<!--<Button Command="Undo">Undo</Button>
+		<CheckBox IsChecked="{Binding ElementName=textEditor,Path=Options.ShowEndOfLine}">
+			<TextBlock Width="16" TextAlignment="Center">¶</TextBlock>
+		</CheckBox>-->
 		<avalonEdit:TextEditor Name="textEditor" 
 			Document="{Binding Document}" SyntaxHighlighting="glsl" 
 			FontFamily="Consolas" FontSize="16" ShowLineNumbers="True" 

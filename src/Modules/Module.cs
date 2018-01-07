@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using Gemini.Framework;
+using Gemini.Modules.Inspector;
 using ShaderStudio.ShaderDocument;
 using ShaderStudio.ShaderViewPanelTool;
 using System;
@@ -25,10 +26,23 @@ namespace ShaderStudio.Modules
 		{
 		}
 
-		private void Shell_ActiveDocumentChanged(object sender, System.EventArgs e)
+		private void Shell_ActiveDocumentChanged(object sender, EventArgs e)
 		{
 			var shaderDoc = Shell.ActiveItem as ShaderDocumentViewModel;
 			if (shaderDoc is null) return;
+			ConnectPanel(shaderDoc);
+			ConnectInspector(shaderDoc);
+		}
+
+		private static void ConnectInspector(ShaderDocumentViewModel shaderDoc)
+		{
+			var inspectorTool = IoC.Get<IInspectorTool>();
+			var objBuilder = new InspectableObjectBuilder().WithObjectProperties(shaderDoc, pd => true);
+			inspectorTool.SelectedObject = objBuilder.ToInspectableObject();
+		}
+
+		private static void ConnectPanel(ShaderDocumentViewModel shaderDoc)
+		{
 			var shaderPanel = IoC.Get<IShaderViewPanelViewModel>();
 			BindProperties(shaderDoc, nameof(shaderDoc.Text)
 				, shaderPanel, nameof(shaderPanel.SelectedShader));

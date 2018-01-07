@@ -10,10 +10,9 @@ namespace ShaderStudio.ShaderViewPanelTool
 	public class ShaderViewPanelCommandHandler : CommandHandlerBase<ShaderViewPanelCommandDefinition>
 	{
 		[ImportingConstructor]
-		public ShaderViewPanelCommandHandler(IShell shell, IShaderViewPanelViewModel shaderPanel)
+		public ShaderViewPanelCommandHandler(IShell shell)
 		{
 			_shell = shell;
-			_shaderPanel = shaderPanel;
 		}
 
 		public override Task Run(Command command)
@@ -23,6 +22,5 @@ namespace ShaderStudio.ShaderViewPanelTool
 		}
 
 		private readonly IShell _shell;
-		private readonly IShaderViewPanelViewModel _shaderPanel;
 	}
 }

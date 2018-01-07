@@ -63,6 +63,12 @@
     <PackageReference Include="OpenTK.GLControl">
       <Version>3.0.0-pre</Version>
     </PackageReference>
+    <PackageReference Include="WpfGlslControl">
+      <Version>0.1.13</Version>
+    </PackageReference>
+    <PackageReference Include="WpfOpenGlControl">
+      <Version>0.2.48</Version>
+    </PackageReference>
     <PackageReference Include="Zenseless">
       <Version>0.3.131</Version>
     </PackageReference>
@@ -81,10 +87,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ShaderDocument\AvalonEditInputAction.cs" />
     <Compile Include="ShaderDocument\GlslFileExtensions.cs" />
     <Compile Include="ShaderDocument\GlslHighlightingHandler.cs" />
     <Compile Include="ShaderDocument\HighlightingLoaderEx.cs" />
-    <Compile Include="ShaderDocument\PersistedDocumentEx.cs" />
+    <Compile Include="ShaderDocument\CodeDocument.cs" />
     <Compile Include="ShaderDocument\ShaderDocumentProvider.cs" />
     <Compile Include="ShaderDocument\ShaderDocumentView.xaml.cs">
       <DependentUpon>ShaderDocumentView.xaml</DependentUpon>
@@ -92,6 +99,7 @@
     <Compile Include="ShaderDocument\ShaderDocumentViewModel.cs" />
     <Compile Include="Modules\Module.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShaderDocument\TextDocumentInputAction.cs" />
     <Compile Include="ShaderViewPanelTool\IShaderViewPanelViewModel.cs" />
     <Compile Include="ShaderViewPanelTool\MenuDefinitions.cs" />
     <Compile Include="ShaderViewPanelTool\ShaderViewPanelCommandDefinition.cs" />
@@ -114,16 +122,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\ShaderViewPanel.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\WpfGlslControl\src\WpfGlslControl.csproj">
-      <Project>{50ED089B-AB09-4BF9-87BD-2934B76E5057}</Project>
-      <Name>WpfGlslControl</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\WpfOpenGlControl\src\WpfOpenGlControl.csproj">
-      <Project>{48B5D6A6-3F23-4668-A585-A9E33900C99D}</Project>
-      <Name>WpfOpenGlControl</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\ShaderIcon.png" />
