@@ -33,6 +33,6 @@ deploy:
     secure: IGRhoLQi/yyC2ej7s79ZRU3PL3NScj4Kxh1Lyydg/CEvD/PbRwIilxmBziEHfwjJ
   artifact: ShaderStudio
   draft: false
-  prerelease: true
+  prerelease: false
   on:
     branch: master                # release from master branch only
